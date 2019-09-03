@@ -4,9 +4,19 @@ type ChartProps = {
 };
 
 class Chart extends React.Component<ChartProps> {
-  id = this.props.id;
+  id: string = this.props.id;
+  width: number = 0;
+  height: number = 480;
+  ref = React.createRef<HTMLDivElement>();
 
   componentDidMount() {
+    const node = this.ref.current;
+
+    if(node) {
+      this.width = node.offsetWidth;
+      this.height = node.offsetHeight;
+    }
+    
     const glCanvas: any = document.querySelector(`#glCanvas${this.id}`);
 
     if (glCanvas === null) {
@@ -50,7 +60,15 @@ class Chart extends React.Component<ChartProps> {
   }
 
   render() {
-    return <canvas id={`glCanvas${this.id}`} width={150} height={480}></canvas>;
+    return (
+      <canvas
+        id={`glCanvas${this.id}`}
+        width={this.width}
+        height={this.height}
+        style={{ width: "99.5%", border: "1px solid red" }}
+      ></canvas>
+    );
+    // return <p> Item # {`${this.id}`}</p>;
   }
 }
 
