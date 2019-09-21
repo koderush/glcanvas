@@ -12,11 +12,11 @@ class Chart extends React.Component<ChartProps> {
   componentDidMount() {
     const node = this.ref.current;
 
-    if(node) {
+    if (node) {
       this.width = node.offsetWidth;
       this.height = node.offsetHeight;
     }
-    
+
     const glCanvas: any = document.querySelector(`#glCanvas${this.id}`);
 
     if (glCanvas === null) {
@@ -35,7 +35,7 @@ class Chart extends React.Component<ChartProps> {
     // Set clear color to black, fully opaque
     switch (this.id) {
       case "1": {
-        gl.clearColor(1.0, 0.0, 0.0, 1.0);
+        gl.clearColor(0.8, 0.7, 0.0, 1.0);
         break;
       }
       case "2": {
