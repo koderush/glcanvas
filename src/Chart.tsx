@@ -6,6 +6,8 @@ type ChartProps = {
 class Chart extends React.Component<ChartProps> {
   id = this.props.id;
 
+  wgl: any;
+
   componentDidMount() {
     const glCanvas: any = document.querySelector(`#glCanvas${this.id}`);
 
@@ -15,8 +17,10 @@ class Chart extends React.Component<ChartProps> {
     }
 
     // Initialize the GL context
-    const gl: WebGLRenderingContext = glCanvas.getContext("webgl");
+    this.wgl = glCanvas.getContext("webgl");
 
+    const gl = this.wgl as WebGLRenderingContext;
+    
     if (gl === null) {
       console.log("Cannot initialize the GL context");
       return;
