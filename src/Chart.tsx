@@ -1,4 +1,6 @@
 import React from "react";
+import ChartGL from "./ChartGL";
+
 type ChartProps = {
   id: string;
 };
@@ -30,6 +32,8 @@ class Chart extends React.Component<ChartProps> {
     this.wgl = glCanvas.getContext("webgl");
 
     const gl = this.wgl as WebGLRenderingContext;
+
+    const cgl : ChartGL = new ChartGL(gl);
     
     if (gl === null) {
       console.log("Cannot initialize the GL context");
@@ -39,7 +43,7 @@ class Chart extends React.Component<ChartProps> {
     // Set clear color to black, fully opaque
     switch (this.id) {
       case "1": {
-        gl.clearColor(0.8, 0.7, 0.0, 1.0);
+        cgl.render();
         break;
       }
       case "2": {
