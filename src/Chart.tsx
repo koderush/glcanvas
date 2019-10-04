@@ -7,8 +7,8 @@ type ChartProps = {
 
 class Chart extends React.Component<ChartProps> {
   id: string = this.props.id;
-  width: number = 0;
-  height: number = 480;
+  width: number = 2000;
+  height: number = 2000;
   ref = React.createRef<HTMLDivElement>();
 
   wgl: any;
@@ -33,7 +33,7 @@ class Chart extends React.Component<ChartProps> {
 
     const gl = this.wgl as WebGLRenderingContext;
 
-    const cgl : ChartGL = new ChartGL(gl);
+    const chartGl : ChartGL = new ChartGL(gl);
     
     if (gl === null) {
       console.log("Cannot initialize the GL context");
@@ -43,7 +43,7 @@ class Chart extends React.Component<ChartProps> {
     // Set clear color to black, fully opaque
     switch (this.id) {
       case "1": {
-        cgl.render();
+        chartGl.render();
         break;
       }
       case "2": {
@@ -63,8 +63,7 @@ class Chart extends React.Component<ChartProps> {
       }
     }
 
-    // Clear the color buffer with specified clear color
-    gl.clear(gl.COLOR_BUFFER_BIT);
+
   }
 
   render() {
